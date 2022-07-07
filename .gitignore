@@ -1,0 +1,7 @@
+**/node_modules
+**/.serverless
+**/pyvenv.cfg
+**/__pycache__
+**/.env
+**/python
+**/python37

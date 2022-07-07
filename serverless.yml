@@ -1,0 +1,73 @@
+service: hsr-dockerized-lambdas-numdevfun
+frameworkVersion: ">=3.15.0"
+plugins:
+  - serverless-python-requirements
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  stage: ${opt:stage, 'prd'}
+  region: ${opt:region, 'us-east-1'}
+  deploymentBucket:
+    name: ${self:custom.environment.DEPLOYMENT_BUCKET}
+    blockPublicAccess: true
+    maxPreviousDeploymentArtifacts: 3
+  stackName: ${self:provider.stage}-${self:service}
+  stackPolicy:
+    - Effect: Allow
+      Principal: "*"
+      Action: "Update:*"
+      Resource: "*"
+  iam: 
+    role: 
+      statements:
+        - Effect: Allow
+          Action:
+            # - "s3:PutObject"
+            # - "s3:GetObject"
+            # - "s3:DeleteObject"
+            # - "s3:GetBucketLocation"
+            # - "s3:ListBucketMultipartUploads"
+            # - "s3:ListMultipartUploadParts"
+            # - "s3:ListBucket"
+            # - "s3:AbortMultipartUpload"
+            # - "s3:CreateMultipartUpload"
+            - "s3:*"
+            - "secretsmanager:GetSecretValue"
+            - "events:PutEvents"
+            - "athena:StartQueryExecution"
+            - "athena:GetQueryExecution"
+            - "glue:GetTable"
+            - "glue:GetDatabase"
+            - "glue:GetPartition"
+            - "glue:GetPartitions"
+          Resource: 
+            - arn:aws:s3:::${self:custom.environment.AUTH_DATA_BUCKET}/*
+            - arn:aws:s3:::${self:custom.environment.AUTH_DATA_BUCKET}
+            - arn:aws:s3:::${self:custom.environment.INTERNAL_PRODUCTS_BUCKET}/*
+            - arn:aws:s3:::${self:custom.environment.INTERNAL_PRODUCTS_BUCKET}
+            - arn:aws:s3:::${self:custom.environment.ATHENA_BUCKET}/*
+            - arn:aws:s3:::${self:custom.environment.ATHENA_BUCKET}
+            - arn:aws:secretsmanager:us-east-1:609175338323:secret:*
+            - arn:aws:events:us-east-1:609175338323:event-bus/${self:provider.stage}-hsr-event-bus
+            - arn:aws:athena:us-east-1:609175338323:*
+            - arn:aws:glue:us-east-1:609175338323:catalog
+            - arn:aws:glue:us-east-1:609175338323:database/*
+            - arn:aws:glue:us-east-1:609175338323:table/*
+
+package:
+  individually: true
+  exclude:
+    - '**/*'
+custom:
+  environment: ${file(serverlessResources/environment.yml):${self:provider.stage}}
+  namespace: HealthSolutionsResearch
+  namespaceShort: HSR
+  # pythonRequirements:
+  #   # dockerizePip: true
+  #   invalidateCaches: true
+  #   slim: true
+resources:
+  - ${file(./serverlessResources/resources-ecr.yml)}
+#  - ${file(./serverlessResources/resources-eventbridge.yml)}
+#functions: ${file(./serverlessResources/functions-lambda.yml)}

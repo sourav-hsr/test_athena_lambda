@@ -1,0 +1,28 @@
+stg:
+  DEPLOYMENT_BUCKET: hsr-infrastructure-deployment-bucket
+  DEV_OPS_BUCKET: hsr-devops-bucket
+  AUTH_DATA_BUCKET: stg-hsr-authoritative-data
+  INTERNAL_PRODUCTS_BUCKET: stg-hsr-internal-data-products
+  SAFEGRAPH_BUCKET: hsr-safegraph-data
+  ATHENA_BUCKET: stg-hsr-athena
+  EVENT_BUS: stg-hsr-event-bus
+  EVENTBUS_ARN: arn:aws:events:us-east-1:609175338323:event-bus/stg-hsr-event-bus
+  SECRETS_ARN: arn:aws:secretsmanager:us-east-1:609175338323:secret:stg
+  DB_ARTIFACTS_BUCKET: stg-hsr-db-artifacts
+  ECR_ARN_PREFIX: 609175338323.dkr.ecr.us-east-1.amazonaws.com
+  LAMBDA_ARN_BASE: arn:aws:lambda:us-east-1:609175338323:function:hsr-dockerized-lambdas-template
+
+prd:
+  DEPLOYMENT_BUCKET: hsr-infrastructure-deployment-bucket
+  SOURCE_BUCKET: hsr-authoritative-data
+  SAFEGRAPH_BUCKET: temp-safegraph
+
+dev:
+  DEPLOYMENT_BUCKET: hsr-infrastructure-deployment-bucket
+  DEV_OPS_BUCKET: hsr-devops-bucket
+  AUTH_DATA_BUCKET: stg-hsr-authoritative-data
+  INTERNAL_PRODUCTS_BUCKET: stg-hsr-internal-data-products
+  SAFEGRAPH_BUCKET: hsr-safegraph-data
+  ATHENA_BUCKET: stg-hsr-athena
+  EVENT_BUS: stg-hsr-event-bus
+  SECRETS_ARN: arn:aws:secretsmanager:us-east-1:609175338323:secret:stg

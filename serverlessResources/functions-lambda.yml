@@ -1,0 +1,16 @@
+templateFunction:
+  image: ${self:custom.environment.ECR_ARN_PREFIX}/numdevfun:v0.1.1
+  description: Lambda function to fetch number of devices from Athena
+  memorySize: 512
+  timeout: 900
+  # vpc: 
+  #   SubnetIds:
+  #     - subnet-07510c1f0c87dd005
+  #     - subnet-030dfd6684482547d
+  #   SecurityGroupIds:
+  #     - sg-0107eef04f67d5689
+  environment:
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    EVENT_BUS: ${self:custom.environment.EVENT_BUS}
+    SECRETS_ARN: ${self:custom.environment.SECRETS_ARN}

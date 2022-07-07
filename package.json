@@ -1,0 +1,20 @@
+{
+  "name": "hsr-lambdas",
+  "version": "1.0.0",
+  "description": "Deployment of Lambda Functions",
+  "scripts": {
+    "prd:deploy": "serverless deploy --verbose --stage prd --region us-east-1 --aws-profile default",
+    "prd:destroy": "echo serverless remove --verbose --stage prd --region us-east-1 --aws-profile default",
+    "stg:deploy": "serverless deploy --verbose --stage stg --region us-east-1 --aws-profile default",
+    "stg:deploy:downsource": "serverless deploy function --function downloadSource --stage stg --region us-east-1 --aws-profile default",
+    "stg:destroy": "echo serverless remove --verbose --stage stg --region us-east-1 --aws-profile default",
+    "dev:deploy": "serverless deploy --verbose --stage dev --region us-east-1 --aws-profile default",
+    "docker:build:downloadsource": "cd lambdas/downloadSource && docker build -t hsrdownloadsource ."
+  },
+  "author": "HSR",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "serverless": "^3.15.0",
+    "serverless-python-requirements": "^5.4.0"
+  }
+}

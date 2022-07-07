@@ -1,5 +1,5 @@
 templateFunction:
-  image: ${self:custom.environment.ECR_ARN_PREFIX}/numdevfun:v0.1.1
+  image: ${self:custom.environment.ECR_ARN_PREFIX}/numdevfun:v0.1.2
   description: Lambda function to fetch number of devices from Athena
   memorySize: 512
   timeout: 900

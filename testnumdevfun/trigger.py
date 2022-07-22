@@ -22,7 +22,7 @@ def trigger():
 
 	# send to eventbus
 	full_event = {
-	    "detail": json.dumps(payload),
+	    "Detail": json.dumps(payload),
 	    "DetailType": "testnumdevfun",
 	    "Source": "testnumdevfunEvent",
 	    "EventBusName": "stg-hsr-event-bus"

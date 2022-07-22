@@ -60,7 +60,14 @@ def handler(event, context):
                 'OutputLocation': output,
             }
         )
-        return response
+
+        
+        result=client.get_query_execution(QueryExecutionId=response["QueryExecutionId"])
+
+        print(result)
+
+
+        return result["OutputLocation"]
 
         
     except Exception:

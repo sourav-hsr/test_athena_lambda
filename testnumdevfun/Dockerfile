@@ -1,5 +1,5 @@
 FROM public.ecr.aws/lambda/python:3.7
-COPY ./testtestnumdevfun/app.py ${LAMBDA_TASK_ROOT}
+COPY ./testnumdevfun/app.py ${LAMBDA_TASK_ROOT}
 COPY ./testnumdevfun/requirements.txt ./
 # COPY ./testnumdevfun/whls ./whls
 COPY ./testnumdevfun/lib ${LAMBDA_TASK_ROOT}/lib

@@ -22,3 +22,6 @@ def trigger():
 	event_response = cloudwatch_events.put_events(Entries = [full_event])	
 
 	return 0
+
+
+trigger()

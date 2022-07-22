@@ -1,20 +1,20 @@
 Resources:
   # The following rule defines the pattern matching to know what event goes to which lambda
-  EventRulenumdevfun:
+  EventRuletestnumdevfun:
     Type: AWS::Events::Rule
     Properties:
-      Name: stg-rule-numdevfun
+      Name: stg-rule-testnumdevfun
       Description: Identifies events to trigger the Raw TRI Calculation lambda and invokes the lambda function
       State: ENABLED
       EventBusName: ${self:custom.environment.EVENTBUS_ARN}
-      EventPattern: {"source":["aws.lambda", "numdevfunEvent"], "detail":{"eventType":["numdevfun"]}}
+      EventPattern: {"source":["aws.lambda", "testnumdevfunEvent"], "detail":{"eventType":["testnumdevfun"]}}
       Targets:
-       - Arn: arn:aws:lambda:us-east-1:609175338323:function:hsr-dockerized-lambdas-numdevfun-stg-numdevfun
-         Id: ${self:provider.stage}-EventRule-numdevfun
+       - Arn: arn:aws:lambda:us-east-1:609175338323:function:hsr-dockerized-lambdas-testnumdevfun-stg-testnumdevfun
+         Id: ${self:provider.stage}-EventRule-testnumdevfun
   # The following rules allows the eventbridge to invoke the lambda functions
-  EventBridgeLambdaPermissionnumdevfun:
+  EventBridgeLambdaPermissiontestnumdevfun:
     Type: AWS::Lambda::Permission
     Properties:
-      FunctionName: arn:aws:lambda:us-east-1:609175338323:function:hsr-dockerized-lambdas-numdevfun-stg-numdevfun
+      FunctionName: arn:aws:lambda:us-east-1:609175338323:function:hsr-dockerized-lambdas-testnumdevfun-stg-testnumdevfun
       Action: lambda:InvokeFunction
       Principal: events.amazonaws.com

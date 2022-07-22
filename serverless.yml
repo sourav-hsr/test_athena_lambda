@@ -1,4 +1,4 @@
-service: hsr-dockerized-lambdas-numdevfun
+service: hsr-dockerized-lambdas-testnumdevfun
 frameworkVersion: ">=3.15.0"
 plugins:
   - serverless-python-requirements

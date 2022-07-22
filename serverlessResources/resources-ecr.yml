@@ -1,7 +1,8 @@
 Resources:
-  numdevfun:
+  testnumdevfun:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: numdevfun
+      RepositoryName: testnumdevfun
       EncryptionConfiguration:
         EncryptionType: AES256
+        
